@@ -1,11 +1,18 @@
-﻿{
-    "name":  "examconnect",
-    "private":  true,
-    "version":  "0.1.0",
-    "scripts":  {
-                    "dev":  "pnpm --parallel --filter \u0027./apps/*\u0027 dev",
-                    "build":  "pnpm --recursive build",
-                    "lint":  "pnpm --recursive lint",
-                    "typecheck":  "pnpm -r typecheck"
-                }
+{
+  "name": "examconnect",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/api & npm run dev --workspace=apps/web",
+    "dev:api": "npm run dev --workspace=apps/api",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test:api && npm run test:web",
+    "test:api": "npm run test --workspace=apps/api",
+    "test:web": "npm run test --workspace=apps/web"
+  }
 }

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Profile — ExamConnect</title>
+  <meta name="description" content="Update your personal information and education records so ExamConnect can calculate your government exam eligibility." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/profile.css" />
+</head>
+<body>
+
+  <main class="profile-page">
+
+    <!-- Loading state (shown while data loads) -->
+    <div id="loading-card" class="state-card" aria-live="polite">
+      <div class="spinner"></div>
+      <p>Loading your profile…</p>
+    </div>
+
+    <!-- Main content (hidden until data is loaded) -->
+    <div id="main-content" class="hidden">
+
+      <!-- ── Header ─────────────────────────────────────── -->
+      <header class="profile-header">
+        <button id="back-btn" class="back-btn" type="button" aria-label="Back to Dashboard">
+          ← Dashboard
+        </button>
+        <p class="eyebrow">ExamConnect</p>
+        <h1>Student Profile</h1>
+        <p class="subtitle">
+          Keep your personal and education details updated.
+          ExamConnect uses them to determine which government
+          exams you qualify for.
+        </p>
+      </header>
+
+      <!-- Feedback message -->
+      <div class="profile-msg">
+        <div id="feedback-msg" class="msg hidden" role="alert"></div>
+      </div>
+
+      <!-- ── Step 1: Personal Information ─────────────── -->
+      <section class="profile-card">
+        <p class="card-eyebrow">Step 1</p>
+        <h2>Personal Information</h2>
+
+        <form id="profile-form" novalidate>
+          <div class="form-grid">
+
+            <label for="firstName">
+              First Name *
+              <input id="firstName" type="text" class="form-input"
+                     placeholder="e.g. Aditya" required />
+            </label>
+
+            <label for="lastName">
+              Last Name
+              <input id="lastName" type="text" class="form-input"
+                     placeholder="e.g. Kumar" />
+            </label>
+
+            <label for="dateOfBirth">
+              Date of Birth
+              <input id="dateOfBirth" type="date" class="form-input" />
+            </label>
+
+            <label for="gender">
+              Gender
+              <select id="gender" class="form-select form-input">
+                <option value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+
+            <label for="state">
+              State
+              <input id="state" type="text" class="form-input"
+                     placeholder="e.g. Delhi" />
+            </label>
+
+            <label for="category">
+              Category
+              <select id="category" class="form-select form-input">
+                <option value="">Select category</option>
+                <option value="General">General</option>
+                <option value="OBC">OBC</option>
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+                <option value="EWS">EWS</option>
+              </select>
+            </label>
+
+          </div><!-- /.form-grid -->
+
+          <button id="save-profile-btn" type="submit"
+                  class="btn btn--primary" style="margin-top:8px;">
+            Save Profile
+          </button>
+        </form>
+      </section>
+
+      <!-- ── Step 2: Education ─────────────────────────── -->
+      <section class="profile-card">
+        <p class="card-eyebrow">Step 2</p>
+        <h2>Education</h2>
+
+        <!-- Existing education records rendered here -->
+        <div id="education-list" class="education-list"></div>
+
+        <!-- Add / Edit form -->
+        <form id="education-form" novalidate>
+          <h3 id="edu-form-title" class="education-form-title">Add Education</h3>
+
+          <div class="form-grid">
+
+            <label for="qualification">
+              Qualification *
+              <input id="qualification" type="text" class="form-input"
+                     placeholder="e.g. B.Voc, M.Sc, B.Tech" required />
+            </label>
+
+            <label for="courseName">
+              Course Name
+              <input id="courseName" type="text" class="form-input"
+                     placeholder="e.g. Master of Science" />
+            </label>
+
+            <label for="stream">
+              Stream
+              <input id="stream" type="text" class="form-input"
+                     placeholder="e.g. Physics" />
+            </label>
+
+            <label for="passingYear">
+              Passing Year
+              <input id="passingYear" type="number" class="form-input"
+                     min="1900" max="2100" placeholder="e.g. 2022" />
+            </label>
+
+            <label for="percentage">
+              Percentage
+              <input id="percentage" type="number" class="form-input"
+                     min="0" max="100" step="0.01" placeholder="e.g. 85.2" />
+            </label>
+
+            <label for="institutionName">
+              Institution
+              <input id="institutionName" type="text" class="form-input"
+                     placeholder="e.g. Delhi University" />
+            </label>
+
+            <label for="boardOrUniversity" class="full-col">
+              Board / University
+              <input id="boardOrUniversity" type="text" class="form-input"
+                     placeholder="e.g. CBSE, Panjab University" />
+            </label>
+
+          </div><!-- /.form-grid -->
+
+          <div class="form-actions" style="margin-top:12px;">
+            <button id="save-edu-btn" type="submit" class="btn btn--primary">
+              Add Education
+            </button>
+            <button id="cancel-edu-btn" type="button"
+                    class="btn btn--outline hidden">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ── Action card ────────────────────────────────── -->
+      <section class="action-card">
+        <div>
+          <h2>Ready to check eligibility?</h2>
+          <p>
+            Your latest profile and education details will be used
+            to evaluate government exam requirements.
+          </p>
+        </div>
+        <button id="check-exams-btn" type="button" class="btn btn--primary">
+          Check My Exams →
+        </button>
+      </section>
+
+    </div><!-- /#main-content -->
+  </main>
+
+  <script src="../js/utils.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/profile.js"></script>
+</body>
+</html>

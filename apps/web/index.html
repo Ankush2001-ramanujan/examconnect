@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ExamConnect — Student Portal</title>
+  <meta name="description" content="Sign in to ExamConnect to discover government exams you are eligible for, track deadlines, and apply through official links." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       AUTH / LOGIN PAGE
+  ════════════════════════════════════════════ -->
+  <main id="auth-page" class="auth-page hidden">
+    <section class="login-card">
+
+      <div class="login-brand" aria-label="ExamConnect">
+        EXAMCONNECT
+      </div>
+
+      <p class="login-eyebrow">Student Portal</p>
+
+      <h1>Find the exams<br>made for you.</h1>
+
+      <p class="login-subtitle">
+        Sign in to check government exams you are eligible for,
+        application deadlines, and official application links.
+      </p>
+
+      <form id="login-form" class="login-form" novalidate>
+        <label for="login-email">
+          Email
+          <input
+            id="login-email"
+            type="email"
+            class="form-input"
+            placeholder="Enter your email"
+            autocomplete="email"
+            value="eligibility-test@example.com"
+            required
+          />
+        </label>
+
+        <label for="login-password">
+          Password
+          <input
+            id="login-password"
+            type="password"
+            class="form-input"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            value="EligibilityTest123!"
+            required
+          />
+        </label>
+
+        <div id="login-error" class="msg hidden" role="alert"></div>
+
+        <button id="login-btn" type="submit" class="btn btn--primary btn--full">
+          Sign In
+        </button>
+      </form>
+
+      <p class="demo-text">Development test account is pre-filled.</p>
+    </section>
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════
+       DASHBOARD PAGE (shown after login)
+  ════════════════════════════════════════════ -->
+  <main id="dash-page" class="dashboard-page hidden">
+
+    <!-- Header -->
+    <header class="dash-header container">
+      <div>
+        <p class="dash-brand" aria-label="ExamConnect">EXAMCONNECT</p>
+        <h1>Government Exam<br>Dashboard</h1>
+        <p class="dash-subtitle">
+          Find government exams you are eligible for, track deadlines,
+          and apply through official sources.
+        </p>
+      </div>
+
+      <div class="header-actions">
+        <span id="user-email" class="user-email"></span>
+        <button id="profile-btn" class="btn btn--outline btn--sm" type="button">
+          Profile
+        </button>
+        <button id="logout-btn" class="btn btn--outline btn--sm" type="button">
+          Logout
+        </button>
+      </div>
+    </header>
+
+    <!-- Stats grid -->
+    <section class="stats-grid" aria-label="Summary statistics">
+      <div class="stat-card">
+        <span class="stat-label">Total Exams</span>
+        <strong id="stat-total" class="stat-value">0</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Eligible Exams</span>
+        <strong id="stat-eligible" class="stat-value">0</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Open Exams</span>
+        <strong id="stat-open" class="stat-value">0</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Not Eligible</span>
+        <strong id="stat-ineligible" class="stat-value">0</strong>
+      </div>
+    </section>
+
+    <!-- Loading state -->
+    <div id="loading-card" class="state-card hidden" aria-live="polite">
+      <div class="spinner"></div>
+      <p>Checking your eligibility…</p>
+    </div>
+
+    <!-- Error state -->
+    <div id="error-card" class="state-card hidden" role="alert">
+      <h2>Unable to load dashboard</h2>
+      <p id="error-msg"></p>
+      <button id="retry-btn" class="btn btn--primary" type="button" style="margin-top:18px;">
+        Try Again
+      </button>
+    </div>
+
+    <!-- Empty state -->
+    <div id="empty-card" class="state-card hidden">
+      <div class="empty-icon" aria-hidden="true">!</div>
+      <h3>No eligible exams found</h3>
+      <p>Update your student profile and education details to check again.</p>
+    </div>
+
+    <!-- Exam section header + grid -->
+    <section id="exam-section" class="hidden">
+      <div class="section-header">
+        <div>
+          <p class="section-eyebrow">Your Results</p>
+          <h2>Eligible Government Exams</h2>
+        </div>
+        <span id="eligible-count" class="result-count"></span>
+      </div>
+
+      <!-- Cards injected here by index.js -->
+      <div id="exam-grid" class="exam-grid" aria-live="polite"></div>
+    </section>
+
+  </main>
+
+  <!-- Scripts — load shared utils + api first, then page logic -->
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

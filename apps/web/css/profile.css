@@ -1,0 +1,181 @@
+/* ==========================================================
+   profile.css — Student Profile page styles
+   ========================================================== */
+
+.profile-page {
+  min-height: 100vh;
+  padding: 40px 6% 70px;
+  background: var(--clr-bg);
+  color: var(--clr-primary);
+}
+
+/* Header */
+.profile-header {
+  max-width: 1000px;
+  margin: 0 auto 30px;
+  animation: fadeSlideUp 0.3s ease both;
+}
+
+.profile-header .back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--clr-muted);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 22px;
+  transition: color var(--transition);
+}
+.profile-header .back-btn:hover { color: var(--clr-primary); }
+
+.profile-header .eyebrow {
+  margin-bottom: 8px;
+}
+
+.profile-header h1 {
+  font-size: 38px;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.profile-header .subtitle {
+  max-width: 680px;
+  color: var(--clr-muted);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+/* Feedback messages */
+.profile-msg {
+  max-width: 1000px;
+  margin: 0 auto 18px;
+}
+
+/* Section card */
+.profile-card {
+  max-width: 1000px;
+  margin: 0 auto 22px;
+  padding: 30px;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  animation: fadeSlideUp 0.3s ease 0.05s both;
+}
+
+.card-eyebrow {
+  color: var(--clr-muted);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.profile-card h2 {
+  font-size: 22px;
+  margin-bottom: 24px;
+}
+
+/* Education list */
+.education-list {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.education-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid var(--clr-border-light);
+  border-radius: var(--radius-md);
+  background: #fafbfc;
+  transition: border-color var(--transition);
+}
+.education-item:hover { border-color: var(--clr-border); }
+
+.education-item h3 {
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+
+.education-item p {
+  margin-top: 3px;
+  color: var(--clr-muted);
+  font-size: 13px;
+}
+
+.education-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* Education form */
+.education-form-title {
+  font-size: 17px;
+  margin-bottom: 18px;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Action card */
+.action-card {
+  max-width: 1000px;
+  margin: 24px auto 0;
+  padding: 26px 30px;
+  border-radius: var(--radius-xl);
+  background: var(--clr-primary);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  animation: fadeSlideUp 0.3s ease 0.1s both;
+}
+
+.action-card h2 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.action-card p {
+  color: #b8c1d4;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.action-card .btn--primary {
+  background: #ffffff;
+  color: var(--clr-primary);
+  flex-shrink: 0;
+}
+.action-card .btn--primary:hover {
+  background: #f2f4f8;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .profile-page { padding: 24px 16px 50px; }
+  .profile-card { padding: 22px 18px; }
+  .profile-header h1 { font-size: 30px; }
+  .action-card { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+  .action-card .btn--primary { width: 100%; }
+  .education-item { flex-direction: column; }
+  .education-actions { width: 100%; }
+  .education-actions .btn { flex: 1; }
+}
