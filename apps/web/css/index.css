@@ -86,7 +86,6 @@
 
 /* ── Dashboard ───────────────────────────────────────────── */
 .dashboard-page {
-  display: none; /* hidden until logged in */
   min-height: 100vh;
   padding: 40px 6%;
   background: var(--clr-bg);
