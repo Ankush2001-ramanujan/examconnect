@@ -3,10 +3,16 @@ import { Temporal } from "@js-temporal/polyfill";
 import { z } from "zod";
 import type { FastifyInstance } from "fastify";
 import { db } from "@examconnect/database";
+import {
+  createSession,
+  sessionCookieName,
+} from "./session.js";
 
 const registerSchema = z.object({
   email: z.string().trim().email().max(254),
   password: z.string().min(8).max(128),
+  firstName: z.string().trim().min(1).max(100).optional(),
+  lastName: z.string().trim().max(100).optional(),
 });
 
 export async function registerRoute(app: FastifyInstance) {
@@ -20,7 +26,7 @@ export async function registerRoute(app: FastifyInstance) {
       });
     }
 
-    const { email, password } = parsed.data;
+    const { email, password, firstName, lastName } = parsed.data;
     const normalizedEmail = email.toLowerCase();
 
     const existingUser = await db.orm.public.User
@@ -46,6 +52,25 @@ export async function registerRoute(app: FastifyInstance) {
       updatedAt: Temporal.Now.instant(),
     });
 
+    if (firstName) {
+      await db.orm.public.StudentProfile.create({
+        userId: user.id,
+        firstName,
+        lastName: lastName || null,
+        updatedAt: Temporal.Now.instant(),
+      });
+    }
+
+    const session = await createSession(user.id);
+
+    reply.setCookie(sessionCookieName, session.rawToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7,
+    });
+
     return reply.code(201).send({
       user: {
         id: user.id,
@@ -54,4 +79,4 @@ export async function registerRoute(app: FastifyInstance) {
       },
     });
   });
-}
+}

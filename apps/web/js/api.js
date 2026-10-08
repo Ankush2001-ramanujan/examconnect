@@ -55,6 +55,17 @@ async function authLogin(email, password) {
   });
 }
 
+/**
+ * POST /auth/register → { user }
+ * @param {{ email: string, password: string, firstName?: string, lastName?: string }} payload
+ */
+async function authRegister(payload) {
+  return apiFetch("/auth/register", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
 /** POST /auth/logout */
 async function authLogout() {
   return apiFetch("/auth/logout", { method: "POST" });

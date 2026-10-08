@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Student Account — ExamConnect</title>
+  <meta name="description" content="Sign up for ExamConnect to check government exam eligibility, track application deadlines, and access official application portals." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/signup.css" />
+</head>
+<body>
+
+  <main class="signup-page">
+    <section class="signup-card">
+
+      <div class="signup-brand" aria-label="ExamConnect">
+        EXAMCONNECT
+      </div>
+
+      <p class="signup-eyebrow">Student Registration</p>
+
+      <h1>Create your account</h1>
+
+      <p class="signup-subtitle">
+        Join ExamConnect to discover government exams you qualify for,
+        track key application deadlines, and apply through verified official portals.
+      </p>
+
+      <form id="signup-form" class="signup-form" novalidate>
+
+        <!-- Full Name Grid -->
+        <div class="form-grid">
+          <label for="signup-firstName">
+            First Name *
+            <input
+              id="signup-firstName"
+              type="text"
+              class="form-input"
+              placeholder="e.g. Aditya"
+              autocomplete="given-name"
+              required
+            />
+          </label>
+
+          <label for="signup-lastName">
+            Last Name <span class="input-helper">(Optional)</span>
+            <input
+              id="signup-lastName"
+              type="text"
+              class="form-input"
+              placeholder="e.g. Sharma"
+              autocomplete="family-name"
+            />
+          </label>
+        </div>
+
+        <!-- Email Address -->
+        <label for="signup-email">
+          Email Address *
+          <input
+            id="signup-email"
+            type="email"
+            class="form-input"
+            placeholder="student@example.com"
+            autocomplete="email"
+            required
+          />
+        </label>
+
+        <!-- Password Field with Visibility Toggle -->
+        <label for="signup-password">
+          Password *
+          <div class="input-with-action">
+            <input
+              id="signup-password"
+              type="password"
+              class="form-input"
+              placeholder="Create a strong password"
+              autocomplete="new-password"
+              required
+            />
+            <button
+              id="toggle-password-btn"
+              type="button"
+              class="input-action-btn"
+              aria-label="Show password"
+              tabindex="-1"
+            >
+              <!-- Eye open icon -->
+              <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <!-- Eye off icon -->
+              <svg class="eye-off-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+              </svg>
+            </button>
+          </div>
+        </label>
+
+        <!-- Password Strength Meter -->
+        <div class="password-meter-wrap" aria-live="polite">
+          <div class="meter-header">
+            <span class="meter-label">Password Strength</span>
+            <span id="meter-badge" class="meter-badge weak">Required</span>
+          </div>
+
+          <div class="meter-bars" aria-hidden="true">
+            <div class="meter-bar"></div>
+            <div class="meter-bar"></div>
+            <div class="meter-bar"></div>
+            <div class="meter-bar"></div>
+          </div>
+
+          <ul class="requirements-list">
+            <li id="req-length" class="req-item">
+              <span class="req-icon">•</span> At least 8 characters
+            </li>
+            <li id="req-cases" class="req-item">
+              <span class="req-icon">•</span> Both uppercase &amp; lowercase letters
+            </li>
+            <li id="req-number-symbol" class="req-item">
+              <span class="req-icon">•</span> At least one number or symbol
+            </li>
+          </ul>
+        </div>
+
+        <!-- Confirm Password Field with Visibility Toggle -->
+        <label for="signup-confirm-password">
+          Confirm Password *
+          <div class="input-with-action">
+            <input
+              id="signup-confirm-password"
+              type="password"
+              class="form-input"
+              placeholder="Confirm your password"
+              autocomplete="new-password"
+              required
+            />
+            <button
+              id="toggle-confirm-btn"
+              type="button"
+              class="input-action-btn"
+              aria-label="Show password"
+              tabindex="-1"
+            >
+              <!-- Eye open icon -->
+              <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <!-- Eye off icon -->
+              <svg class="eye-off-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+              </svg>
+            </button>
+          </div>
+          <div id="match-hint" class="match-hint" aria-live="polite"></div>
+        </label>
+
+        <!-- Declaration / Honor Code Checkbox -->
+        <label class="terms-row">
+          <input id="signup-terms" type="checkbox" required />
+          <span>I declare that my academic qualifications and profile details will be submitted accurately for official government exam checks.</span>
+        </label>
+
+        <!-- Feedback Alert Banners -->
+        <div id="signup-error" class="msg hidden" role="alert"></div>
+        <div id="signup-success" class="msg hidden" role="status"></div>
+
+        <!-- Submit Button -->
+        <button id="signup-btn" type="submit" class="btn btn--primary btn--full signup-btn">
+          Create Student Account
+        </button>
+
+      </form>
+
+      <!-- Navigation to Sign In -->
+      <p class="auth-switch-text">
+        Already have an account?
+        <a href="index.html" class="auth-nav-link">Sign In here →</a>
+      </p>
+
+      <!-- Security Trust Footer -->
+      <div class="security-badge">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+        </svg>
+        <span>Argon2id Encrypted • Strict Data Protection</span>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/signup.js"></script>
+</body>
+</html>

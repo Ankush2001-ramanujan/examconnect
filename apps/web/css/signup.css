@@ -1,0 +1,380 @@
+/* ==========================================================
+   ExamConnect — Signup Page Stylesheet
+   signup.css — Matches the design system and theme of ExamConnect
+   ========================================================== */
+
+/* ── Signup Page Layout ──────────────────────────────────── */
+.signup-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 48px 20px;
+  background: var(--clr-bg);
+}
+
+.signup-card {
+  width: min(100%, 540px);
+  padding: 42px 40px;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: 26px;
+  box-shadow: var(--shadow-lg);
+  animation: fadeSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Brand & Headings ────────────────────────────────────── */
+.signup-brand {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--clr-primary);
+}
+
+.signup-brand::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--clr-primary);
+  box-shadow: 0 0 0 3px rgba(23, 32, 51, 0.12);
+}
+
+.signup-eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clr-muted);
+  margin-bottom: 8px;
+}
+
+.signup-card h1 {
+  font-size: clamp(26px, 3.5vw, 32px);
+  line-height: 1.15;
+  margin-bottom: 12px;
+  color: var(--clr-primary);
+  font-weight: 800;
+}
+
+.signup-subtitle {
+  color: var(--clr-muted);
+  line-height: 1.6;
+  margin-bottom: 28px;
+  font-size: 14px;
+}
+
+/* ── Signup Form ─────────────────────────────────────────── */
+.signup-form {
+  display: grid;
+  gap: 18px;
+}
+
+.signup-form label {
+  display: grid;
+  gap: 7px;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: #374158;
+}
+
+.input-helper {
+  font-weight: 400;
+  color: var(--clr-muted);
+  font-size: 12px;
+}
+
+/* ── Input with Icon / Toggle ────────────────────────────── */
+.input-with-action {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-action .form-input {
+  padding-right: 46px;
+}
+
+.input-action-btn {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-muted);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition), background-color var(--transition);
+}
+
+.input-action-btn:hover {
+  color: var(--clr-primary);
+  background-color: var(--clr-border-light);
+}
+
+.input-action-btn svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* ── Password Strength Meter ─────────────────────────────── */
+.password-meter-wrap {
+  margin-top: -6px;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border: 1px solid var(--clr-border-light);
+  border-radius: var(--radius-sm);
+  display: grid;
+  gap: 10px;
+}
+
+.meter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--clr-muted);
+}
+
+.meter-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.meter-badge {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition);
+}
+
+.meter-badge.weak {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.meter-badge.fair {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.meter-badge.good {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.meter-badge.strong {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.meter-bars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  height: 6px;
+}
+
+.meter-bar {
+  background: var(--clr-border);
+  border-radius: var(--radius-pill);
+  transition: background-color 0.25s ease;
+}
+
+.meter-bar.active-weak {
+  background: #ef4444;
+}
+
+.meter-bar.active-fair {
+  background: #f59e0b;
+}
+
+.meter-bar.active-good {
+  background: #0ea5e9;
+}
+
+.meter-bar.active-strong {
+  background: #10b981;
+}
+
+/* Checklist of requirements */
+.requirements-list {
+  display: grid;
+  gap: 5px;
+  list-style: none;
+  font-size: 12px;
+  color: var(--clr-muted);
+  margin-top: 2px;
+}
+
+.req-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color var(--transition);
+}
+
+.req-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 900;
+  background: var(--clr-border);
+  color: var(--clr-muted);
+  transition: all var(--transition);
+}
+
+.req-item.met {
+  color: var(--clr-success-text);
+  font-weight: 600;
+}
+
+.req-item.met .req-icon {
+  background: #10b981;
+  color: #ffffff;
+}
+
+/* Match indicator */
+.match-hint {
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 16px;
+  transition: color var(--transition);
+}
+
+.match-hint.match {
+  color: var(--clr-success-text);
+}
+
+.match-hint.mismatch {
+  color: var(--clr-error-text);
+}
+
+/* ── Checkbox Declaration ────────────────────────────────── */
+.terms-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #4b5563;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.terms-row input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--clr-primary);
+  margin-top: 2px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ── Submit Button & Spinners ─────────────────────────────── */
+.signup-btn {
+  position: relative;
+  margin-top: 8px;
+  padding: 13px 20px;
+  font-size: 15px;
+}
+
+.btn-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+/* ── Navigation between Auth Pages ───────────────────────── */
+.auth-switch-text {
+  margin-top: 24px;
+  font-size: 13px;
+  color: var(--clr-muted);
+  text-align: center;
+}
+
+.auth-nav-link {
+  color: var(--clr-primary);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition);
+}
+
+.auth-nav-link:hover {
+  color: #2b4c9e;
+}
+
+/* ── Security Trust Footer ───────────────────────────────── */
+.security-badge {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--clr-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--clr-muted-light);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.security-badge svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* ── Responsive adjustments ──────────────────────────────── */
+@media (max-width: 600px) {
+  .signup-card {
+    padding: 30px 22px;
+    border-radius: 20px;
+  }
+
+  .signup-card h1 {
+    font-size: 24px;
+  }
+
+  .password-meter-wrap {
+    padding: 10px 12px;
+  }
+}

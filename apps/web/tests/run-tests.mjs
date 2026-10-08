@@ -94,6 +94,12 @@ describe("File structure", () => {
   test("pages/exam-detail.html exists", () => {
     expect(fileExists("pages/exam-detail.html")).toBeTruthy();
   });
+  test("pages/signup.html exists", () => {
+    expect(fileExists("pages/signup.html")).toBeTruthy();
+  });
+  test("signup.html exists", () => {
+    expect(fileExists("signup.html")).toBeTruthy();
+  });
   test("css/style.css exists", () => {
     expect(fileExists("css/style.css")).toBeTruthy();
   });
@@ -105,6 +111,9 @@ describe("File structure", () => {
   });
   test("css/exam-detail.css exists", () => {
     expect(fileExists("css/exam-detail.css")).toBeTruthy();
+  });
+  test("css/signup.css exists", () => {
+    expect(fileExists("css/signup.css")).toBeTruthy();
   });
   test("js/api.js exists", () => {
     expect(fileExists("js/api.js")).toBeTruthy();
@@ -120,6 +129,9 @@ describe("File structure", () => {
   });
   test("js/exam-detail.js exists", () => {
     expect(fileExists("js/exam-detail.js")).toBeTruthy();
+  });
+  test("js/signup.js exists", () => {
+    expect(fileExists("js/signup.js")).toBeTruthy();
   });
 });
 
@@ -201,6 +213,31 @@ describe("exam-detail.html structure", () => {
   test("has back-to-dash button", () => expect(html).toContain("back-to-dash"));
 });
 
+describe("signup.html structure", () => {
+  const html = readFile("pages/signup.html");
+  test("has DOCTYPE", () => expect(html).toContain("<!DOCTYPE html>"));
+  test("loads ../css/style.css", () => expect(html).toContain("../css/style.css"));
+  test("loads ../css/signup.css", () => expect(html).toContain("../css/signup.css"));
+  test("loads ../js/utils.js", () => expect(html).toContain("../js/utils.js"));
+  test("loads ../js/api.js", () => expect(html).toContain("../js/api.js"));
+  test("loads ../js/signup.js", () => expect(html).toContain("../js/signup.js"));
+  test("has signup form #signup-form", () => expect(html).toContain('id="signup-form"'));
+  test("has firstName input", () => expect(html).toContain('id="signup-firstName"'));
+  test("has lastName input", () => expect(html).toContain('id="signup-lastName"'));
+  test("has email input", () => expect(html).toContain('id="signup-email"'));
+  test("has password input", () => expect(html).toContain('id="signup-password"'));
+  test("has confirm password input", () => expect(html).toContain('id="signup-confirm-password"'));
+  test("has password toggle button", () => expect(html).toContain('id="toggle-password-btn"'));
+  test("has confirm password toggle button", () => expect(html).toContain('id="toggle-confirm-btn"'));
+  test("has strength meter badge", () => expect(html).toContain('id="meter-badge"'));
+  test("has match hint element", () => expect(html).toContain('id="match-hint"'));
+  test("has terms declaration checkbox", () => expect(html).toContain('id="signup-terms"'));
+  test("has submit button #signup-btn", () => expect(html).toContain('id="signup-btn"'));
+  test("has error banner #signup-error", () => expect(html).toContain('id="signup-error"'));
+  test("has success banner #signup-success", () => expect(html).toContain('id="signup-success"'));
+  test("has link back to sign in", () => expect(html).toContain('href="../index.html"'));
+});
+
 describe("js/api.js correctness", () => {
   const js = readFile("js/api.js");
   test("defines API_URL pointing to port 4000", () =>
@@ -213,6 +250,8 @@ describe("js/api.js correctness", () => {
     expect(js).toContain("async function authMe"));
   test("defines authLogin()", () =>
     expect(js).toContain("async function authLogin"));
+  test("defines authRegister()", () =>
+    expect(js).toContain("async function authRegister"));
   test("defines authLogout()", () =>
     expect(js).toContain("async function authLogout"));
   test("defines getEligibleExams()", () =>
@@ -343,6 +382,26 @@ describe("js/exam-detail.js correctness", () => {
     expect(js).toContain("source"));
   test("shows error state", () =>
     expect(js).toContain("showErrorState"));
+});
+
+describe("js/signup.js correctness", () => {
+  const js = readFile("js/signup.js");
+  test("defines checkSession()", () =>
+    expect(js).toContain("checkSession"));
+  test("defines evaluatePassword()", () =>
+    expect(js).toContain("evaluatePassword"));
+  test("defines updateMeterUI()", () =>
+    expect(js).toContain("updateMeterUI"));
+  test("calls authRegister()", () =>
+    expect(js).toContain("authRegister"));
+  test("validates email length (<= 254)", () =>
+    expect(js).toContain("254"));
+  test("validates password length (>= 8, <= 128)", () => {
+    expect(js).toContain("128");
+    expect(js).toContain("8");
+  });
+  test("handles EMAIL_ALREADY_EXISTS error", () =>
+    expect(js).toContain("EMAIL_ALREADY_EXISTS"));
 });
 
 describe("css/style.css — design system", () => {
