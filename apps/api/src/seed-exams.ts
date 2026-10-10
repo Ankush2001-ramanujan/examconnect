@@ -1,7 +1,7 @@
 import { Temporal } from "@js-temporal/polyfill";
 import { db } from "@examconnect/database";
 
-// ⚠️ VERIFY: vacancies, dates, age limits official notification se match karo
+
 const exams = [
   {
     name: "SSC CHSL 2026",
@@ -39,7 +39,7 @@ const exams = [
     dates: { start: "2026-12-01", end: "2027-01-15", exam: "2027-03-20" },
     age: { min: 18, max: 23, relax: "General:23,OBC:26,SC:28,ST:28,EWS:23" },
   },
-{
+  {
     name: "UPSC Civil Services 2026",
     conductingBody: "Union Public Service Commission (UPSC)",
     description: "Official recruitment for IAS, IPS, IFS and Central Group A services based on the 2026 calendar.",
@@ -66,19 +66,18 @@ const exams = [
     dates: { start: "2026-10-08", end: "2026-11-06", exam: "2026-12-20" },
     age: { min: 18, max: 33, relax: "General:33,OBC:36,SC:38,ST:38,EWS:33" },
   },
-
+  
 ];
+
 async function main() {
   for (const e of exams) {
     const existing = await db.orm.public.Exam.where({ name: e.name }).first();
-    
 
     if (existing) {
       console.log("Already exists, skipping:", e.name);
       continue;
     }
 
-    
     const exam = await db.orm.public.Exam.create({
       name: e.name,
       conductingBody: e.conductingBody,
@@ -106,11 +105,12 @@ async function main() {
       updatedAt: Temporal.Now.instant(),
     });
 
+    //  Yeh block database mein backend ke rules (comma format) ke hisab se entries create karega
     const rule = await db.orm.public.EligibilityRule.create({
       examId: exam.id,
       postId: post.id,
       ruleType: "AGE",
-      name: `Age Requirement ${e.age.min} to ${e.age.max}`,
+      name: `${e.name} Age Limit Rule`,
       description: e.age.relax,
       updatedAt: Temporal.Now.instant(),
     });
@@ -121,18 +121,16 @@ async function main() {
       status: "ACTIVE",
       conditionField: "age",
       operator: "BETWEEN",
-      expectedValue: `${e.age.min}-${e.age.max}`,
+      expectedValue: `${e.age.min},${e.age.max}`, // Backend evaluator ke array-split ke liye standard format
       effectiveFrom: Temporal.Now.instant(),
       updatedAt: Temporal.Now.instant(),
     });
 
-    console.log("Successfully Created:", e.name);
+    console.log("Successfully seeded exam:", e.name);
   }
-  console.log("All new exams seeded successfully!");
-  process.exit(0);
 }
 
 main().catch((err) => {
-  console.error("Failed:", err);
+  console.error("Error during seeding process:", err);
   process.exit(1);
 });
